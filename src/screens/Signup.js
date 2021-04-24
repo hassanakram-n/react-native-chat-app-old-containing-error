@@ -53,53 +53,56 @@ const SignupScreen = ({navigation}) => {
   // }
   // // //////
 
-//   const signupHandler = () => {
-//     if (fullName && email && password && id !== null) {
-//       setdisable(true);
-//       //
-//       db.collection(radioCheck)
-//         .doc(id)
-//         .set(userData)
-//         .then((snapshots) => {
-//           navigation.navigate('LoginScreen')
-          
-//         })
-//         .catch((error) => console.alert(error));
-//       //
-//     } else {
-//       alert('Please complete all fields.');
-//     }
-//   };
+  //   const signupHandler = () => {
+  //     if (fullName && email && password && id !== null) {
+  //       setdisable(true);
+  //       //
+  //       db.collection(radioCheck)
+  //         .doc(id)
+  //         .set(userData)
+  //         .then((snapshots) => {
+  //           navigation.navigate('LoginScreen')
+
+  //         })
+  //         .catch((error) => console.alert(error));
+  //       //
+  //     } else {
+  //       alert('Please complete all fields.');
+  //     }
+  //   };
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Image source={require('../assets/logo.png')} style={styles.logo} />
-      <Text style={styles.text}>Create Account</Text>
+    <>
+    <View style={styles.SignupScreenMainCont}>
+      <View style={styles.TitleCont}>
+        <Image source={require('../assets/logo.png')} style={styles.logo} />
+        <Text style={styles.text}>Chat App</Text>
+      </View>
+      <ScrollView contentContainerStyle={styles.container}>
+        {/* ---------------------- Student Section --------------------- */}
 
-      {/* ---------------------- Student Section --------------------- */}
-
-      {/* Name */}
-      <FormInput
-        disable={disable}
-        labelValue={fullName}
-        onChangeText={(name) => setfullName(name)}
-        placeholderText='Mobile Number *'
-        iconType="mobile1"
-        keyboardType="number-pad"
-        autoCorrect={false}
-      />
-      {/* Email */}
-      <FormInput
-        disable={disable}
-        labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
-        placeholderText='Email Adress *'
-        iconType="user"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
-      {/* Student ID */}
-      {/* <FormInput
+        {/* Name */}
+        <FormInput
+          disable={disable}
+          labelValue={fullName}
+          onChangeText={(name) => setfullName(name)}
+          placeholderText="Mobile Number *"
+          iconType="mobile1"
+          keyboardType="number-pad"
+          autoCorrect={false}
+        />
+        {/* Email */}
+        <FormInput
+          disable={disable}
+          labelValue={email}
+          onChangeText={(userEmail) => setEmail(userEmail)}
+          placeholderText="Email Adress *"
+          iconType="user"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+        {/* Student ID */}
+        {/* <FormInput
         disable={disable}
         labelValue={id}
         onChangeText={(userid) => setid(userid)}
@@ -109,77 +112,87 @@ const SignupScreen = ({navigation}) => {
         onBlur={() => setid(`${idPrefix}${id}`)}
       /> */}
 
-      {/* !!!-------------------Student Section ------------------!!! */}
+        {/* !!!-------------------Student Section ------------------!!! */}
 
-      {/* Password */}
-      <FormInput
-        inputColor={passwordInputColor}
-        disable={disable}
-        labelValue={p1}
-        onChangeText={(userPassword) => setp1(userPassword)}
-        placeholderText="Password"
-        iconType="lock"
-        secureTextEntry={true}
-      />
+        {/* Password */}
+        <FormInput
+          inputColor={passwordInputColor}
+          disable={disable}
+          labelValue={p1}
+          onChangeText={(userPassword) => setp1(userPassword)}
+          placeholderText="Password"
+          iconType="lock"
+          secureTextEntry={true}
+        />
 
-      {/* Confrim  Password */}
-      <FormInput
-        inputColor={passwordInputColor}
-        disable={disable}
-        labelValue={p2}
-        onChangeText={(userPassword) => setp2(userPassword)}
-        placeholderText="Confirm Password"
-        iconType="lock"
-        secureTextEntry={true}
-        onBlur={() => confrimpasswordHandler()}
-      />
-      {/* Sign up button */}
-      <FormButton
-        isLoading={disable}
-        iconType="edit"
-        buttonTitle="Sign Up"
-        // onPress={() => signupHandler()}
-      />
+        {/* Confrim  Password */}
+        <FormInput
+          inputColor={passwordInputColor}
+          disable={disable}
+          labelValue={p2}
+          onChangeText={(userPassword) => setp2(userPassword)}
+          placeholderText="Confirm Password"
+          iconType="lock"
+          secureTextEntry={true}
+          onBlur={() => confrimpasswordHandler()}
+        />
+        {/* Sign up button */}
+        <FormButton
+          isLoading={disable}
+          iconType="edit"
+          buttonTitle="Sign Up"
+          // onPress={() => signupHandler()}
+        />
 
-      <View style={styles.textPrivate}>
-        <Text style={styles.color_textPrivate}>
-          By registering, you confirm that you accept our
-        </Text>
-        <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
-          <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
-            Terms of service
+        <View style={styles.textPrivate}>
+          <Text style={styles.color_textPrivate}>
+            By registering, you confirm that you accept our
           </Text>
-        </TouchableOpacity>
-        <Text style={styles.color_textPrivate}> and </Text>
-        <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
-          Privacy Policy
-        </Text>
-      </View>
+          <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
+            <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
+              Terms of service
+            </Text>
+          </TouchableOpacity>
+          <Text style={styles.color_textPrivate}> and </Text>
+          <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
+            Privacy Policy
+          </Text>
+        </View>
 
-      <TouchableOpacity
-        disable={disable}
-        style={styles.navButton}
-        onPress={() => navigation.navigate('LoginScreen')}>
-        <Text style={styles.navButtonText}>Have an account? Sign In</Text>
-      </TouchableOpacity>
-    </ScrollView>
+        <TouchableOpacity
+          disable={disable}
+          style={styles.navButton}
+          onPress={() => navigation.navigate('LoginScreen')}>
+          <Text style={styles.navButtonText}>Have an account? Sign In</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    </View>
+    </>
   );
 };
 
 export default SignupScreen;
 
 const styles = StyleSheet.create({
-  container: {
+  SignupScreenMainCont:{
     flex: 1,
-    // backgroundColor: '#f9fafd',
+    backgroundColor: '#fff'
+  },
+  TitleCont:{
     justifyContent: 'center',
-    // alignItems: 'center',
+    alignItems: 'center',
+    padding: 5,
+    marginTop: 15,
+  },
+  container: {
     padding: 20,
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   logo: {
     alignSelf: 'center',
-    height: 150,
-    width: 150,
+    height: 110,
+    width: 110,
     resizeMode: 'cover',
     // paddingBottom: 10,
     marginBottom: 10,
@@ -187,12 +200,13 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 24,
-    marginBottom: 10,
+    // marginBottom: 10,
     color: '#0f0f0f',
+    fontWeight: 'bold',
     // alignSelf: 'flex-start',
   },
   navButton: {
-    marginTop: 5,
+    // marginTop: 5,
     alignSelf: 'flex-end',
   },
   navButtonText: {
