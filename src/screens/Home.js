@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View, Text, Button} from 'react-native';
+import {realtimeData} from '../config/FirebaseRealtimeDatabase'
 
 const Home = ({navigation}) => {
+
+  const [data, setdata] = useState(null)
   return (
     <>
       <View style={styles.HomeMainCont}>
         <Text style={styles.text}>Hello Home Screen</Text>
-        <Button onPress={()=> navigation.navigate('Signup')} title='Go to Sign Up' />
+        <Button
+          onPress={() => navigation.navigate('Signup')}
+          title="Go to Sign Up"
+        />
+        <Button onPress={() => realtimeData('/name', setdata)} title="firebase data" />
       </View>
     </>
   );
