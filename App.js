@@ -8,19 +8,32 @@ import {
   StatusBar,
 } from 'react-native';
 
+import {connect} from 'react-redux';
+import {Provider} from 'react-redux';
+import store from './src/redux/store';
+//
 import StackNavigation from './src/navigations/Stack';
 import SignupScreen from './src/screens/Signup';
+//
 
 const App = () => {
   return (
     <>
-      <View style={styles.AppMainContainer}>
-        <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-        <StackNavigation />
-      </View>
+      <Provider store={store}>
+        <View style={styles.AppMainContainer}>
+          <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+          <StackNavigation />
+        </View>
+      </Provider>
     </>
   );
 };
+// const mapStateToProps = (state) => ({
+//   // theme: state.settings.theme
+// });
+
+// export default connect(mapStateToProps, null)(App);
+export default App;
 
 const styles = StyleSheet.create({
   AppMainContainer: {
@@ -31,4 +44,3 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;

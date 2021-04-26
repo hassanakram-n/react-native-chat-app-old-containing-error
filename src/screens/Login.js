@@ -6,25 +6,29 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  StatusBar,
 } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import RadioButton from '../components/RadioButton';
-import * as Animatable from 'react-native-animatable'
+import * as Animatable from 'react-native-animatable';
 //
 // import {db} from '../Config/firestore';
+//
+import {connect} from 'react-redux';
+//
+const LoginScreen = ({navigation, theme}) => {
+  console.log('theme==>>', theme);
 
-const SignupScreen = ({navigation}) => {
+  const [radioCheck, setradioCheck] = useState('student');
+  const [disable, setdisable] = useState(false);
   const [fullName, setfullName] = useState();
-  const [number, setnumber] = useState();
   const [email, setEmail] = useState();
+  const [id, setid] = useState('001');
   const [password, setPassword] = useState();
   const [p1, setp1] = useState('');
   const [p2, setp2] = useState('');
-  const [disable, setdisable] = useState(false);
-  const [id, setid] = useState('001');
-  const [radioCheck, setradioCheck] = useState('student');
-  
+
   const [passwordInputColor, setpasswordInputColor] = useState('#0f0f0f');
   // password !== confirmPassword ? 'red' : '#0f0f0f';
   const confrimpasswordHandler = () => {
@@ -74,7 +78,8 @@ const SignupScreen = ({navigation}) => {
   //   };
   return (
     <>
- <Animatable.View
+      {/* <StatusBar backgroundColor="#0f0f0f" barStyle="Light-content" /> */}
+      <Animatable.View
         animation="fadeInUpBig"
         style={styles.SignupScreenMainCont}>
         <View style={styles.TitleCont}>
@@ -83,44 +88,34 @@ const SignupScreen = ({navigation}) => {
             source={require('../assets/logo.png')}
             style={styles.logo}
           />
-        <Text style={styles.text}>Chat App</Text>
-      </View>
-      <ScrollView contentContainerStyle={styles.container}>
-        {/* ---------------------- Student Section --------------------- */}
+          <Text style={styles.text}>Chat App</Text>
+        </View>
+        <ScrollView contentContainerStyle={styles.container}>
+          {/* ---------------------- Student Section --------------------- */}
 
-        {/* Name */}
-        <FormInput
-          disable={disable}
-          labelValue={fullName}
-          onChangeText={(name) => setfullName(name)}
-          placeholderText="Name"
-          iconType="mobile1"
-          keyboardType="number-pad"
-          autoCorrect={false}
-        />
-        {/* Mobile */}
-        <FormInput
-          disable={disable}
-          labelValue={fullName}
-          onChangeText={(name) => setfullName(name)}
-          placeholderText="Mobile Number"
-          iconType="mobile1"
-          keyboardType="number-pad"
-          autoCorrect={false}
-        />
-        {/* Email */}
-        {/* <FormInput
-          disable={disable}
-          labelValue={email}
-          onChangeText={(userEmail) => setEmail(userEmail)}
-          placeholderText="Email Adress "
-          iconType="user"
-          keyboardType="email-address"
-          autoCapitalize="none"
-          autoCorrect={false}
-        /> */}
-        {/* Student ID */}
-        {/* <FormInput
+          {/* Name */}
+          <FormInput
+            disable={disable}
+            labelValue={fullName}
+            onChangeText={(name) => setfullName(name)}
+            placeholderText="Mobile Number *"
+            iconType="mobile1"
+            keyboardType="number-pad"
+            autoCorrect={false}
+          />
+          {/* Email */}
+          {/* <FormInput
+            disable={disable}
+            labelValue={email}
+            onChangeText={(userEmail) => setEmail(userEmail)}
+            placeholderText="Email Adress *"
+            iconType="user"
+            keyboardType="email-address"
+            autoCapitalize="none"
+            autoCorrect={false}
+          /> */}
+          {/* Student ID */}
+          {/* <FormInput
         disable={disable}
         labelValue={id}
         onChangeText={(userid) => setid(userid)}
@@ -130,73 +125,76 @@ const SignupScreen = ({navigation}) => {
         onBlur={() => setid(`${idPrefix}${id}`)}
       /> */}
 
-        {/* !!!-------------------Student Section ------------------!!! */}
+          {/* !!!-------------------Student Section ------------------!!! */}
 
-        {/* Password */}
-        <FormInput
-          inputColor={passwordInputColor}
-          disable={disable}
-          labelValue={p1}
-          onChangeText={(userPassword) => setp1(userPassword)}
-          placeholderText="Password"
-          iconType="lock"
-          secureTextEntry={true}
-        />
+          {/* Password */}
+          <FormInput
+            inputColor={passwordInputColor}
+            disable={disable}
+            labelValue={p1}
+            onChangeText={(userPassword) => setp1(userPassword)}
+            placeholderText="Password"
+            iconType="lock"
+            secureTextEntry={true}
+          />
 
-        {/* Confrim  Password */}
-        <FormInput
-          inputColor={passwordInputColor}
-          disable={disable}
-          labelValue={p2}
-          onChangeText={(userPassword) => setp2(userPassword)}
-          placeholderText="Confirm Password"
-          iconType="lock"
-          secureTextEntry={true}
-          onBlur={() => confrimpasswordHandler()}
-        />
-        {/* Sign up button */}
-        <FormButton
-          isLoading={disable}
-          iconType="edit"
-          buttonTitle="Sign Up"
-          // onPress={() => signupHandler()}
-        />
+          {/* Confrim  Password */}
+          {/* <FormInput
+            inputColor={passwordInputColor}
+            disable={disable}
+            labelValue={p2}
+            onChangeText={(userPassword) => setp2(userPassword)}
+            placeholderText="Confirm Password"
+            iconType="lock"
+            secureTextEntry={true}
+            onBlur={() => confrimpasswordHandler()}
+          /> */}
+          {/* Sign up button */}
+          <FormButton
+            isLoading={disable}
+            iconType="edit"
+            buttonTitle="Sign In"
+            // onPress={() => signupHandler()}
+          />
 
-        <View style={styles.textPrivate}>
-          <Text style={styles.color_textPrivate}>
-            By registering, you confirm that you accept our
-          </Text>
-          <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
-            <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
-              Terms of service
+          {/* <View style={styles.textPrivate}>
+            <Text style={styles.color_textPrivate}>
+              By registering, you confirm that you accept our
             </Text>
-          </TouchableOpacity>
-          <Text style={styles.color_textPrivate}> and </Text>
-          <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
-            Privacy Policy
-          </Text>
-        </View>
+            <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
+              <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
+                Terms of service
+              </Text>
+            </TouchableOpacity>
+            <Text style={styles.color_textPrivate}> and </Text>
+            <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
+              Privacy Policy
+            </Text>
+          </View> */}
 
-        <TouchableOpacity
-          disable={disable}
-          style={styles.navButton}
-          onPress={() => navigation.navigate('OTP')}>
-          <Text style={styles.navButtonText}>Have an account? Sign In</Text>
-        </TouchableOpacity>
-      </ScrollView>
-    </Animatable.View>
+          <TouchableOpacity
+            disable={disable}
+            style={styles.navButton}
+            onPress={() => navigation.navigate('Signup')}>
+            <Text style={styles.navButtonText}>Have an account? Sign In</Text>
+          </TouchableOpacity>
+        </ScrollView>
+      </Animatable.View>
     </>
   );
 };
-
-export default SignupScreen;
+const mapStateToProps = (state) => ({
+  theme: state.settings.theme,
+});
+export default connect(mapStateToProps, null)(LoginScreen);
+// export default LoginScreen;
 
 const styles = StyleSheet.create({
-  SignupScreenMainCont:{
+  SignupScreenMainCont: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
-  TitleCont:{
+  TitleCont: {
     justifyContent: 'center',
     alignItems: 'center',
     padding: 5,
@@ -224,7 +222,7 @@ const styles = StyleSheet.create({
     // alignSelf: 'flex-start',
   },
   navButton: {
-    // marginTop: 5,
+    marginTop: 8,
     alignSelf: 'flex-end',
   },
   navButtonText: {

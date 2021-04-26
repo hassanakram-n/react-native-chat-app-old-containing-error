@@ -1,4 +1,6 @@
-import Home from '../screens/Home'
-import Signup from '../screens/Signup'
+import Home from '../screens/Home';
+import Signup from '../screens/Signup';
+import Login from '../screens/Login';
+import OTP from '../screens/OTP';
 
-export {Home, Signup}
+export {Home, Login, Signup, OTP};

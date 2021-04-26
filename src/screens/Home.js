@@ -1,19 +1,29 @@
 import React, {useState} from 'react';
-import {StyleSheet, View, Text, Button} from 'react-native';
-import {realtimeData} from '../config/FirebaseRealtimeDatabase'
+import {StyleSheet, View, Text, Button, ScrollView} from 'react-native';
+import ChatCard from '../components/ChatCard';
+import {realtimeData} from '../config/FirebaseRealtimeDatabase';
 
 const Home = ({navigation}) => {
-
-  const [data, setdata] = useState(null)
+  const [data, setdata] = useState(null);
   return (
     <>
       <View style={styles.HomeMainCont}>
-        <Text style={styles.text}>Hello Home Screen</Text>
-        <Button
-          onPress={() => navigation.navigate('Signup')}
-          title="Go to Sign Up"
-        />
-        <Button onPress={() => realtimeData('/name', setdata)} title="firebase data" />
+        <ScrollView>
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+          <ChatCard />
+        </ScrollView>
       </View>
     </>
   );
@@ -26,9 +36,10 @@ export default Home;
 const styles = StyleSheet.create({
   HomeMainCont: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    paddingTop: 10,
     backgroundColor: '#fff',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   text: {
     fontSize: 20,
