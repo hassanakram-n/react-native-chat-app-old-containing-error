@@ -7,7 +7,7 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
+import SplashScreen from 'react-native-splash-screen'
 import {connect} from 'react-redux';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';

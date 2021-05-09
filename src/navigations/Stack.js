@@ -1,38 +1,47 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import * as screens from './Screens';
 
 const Stack = createStackNavigator();
 const StackNavigation = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator 
+      <Stack.Navigator
       // screenOptions={{headerShown: false}}
       >
         {/* Home */}
         <Stack.Screen
           name="Home"
           component={screens.Home}
-          options={{title: 'Chat App'}}
+          options={{ title: 'Chat App' }}
+        />
+        {/* Home */}
+        <Stack.Screen
+          name="ChatScreen"
+          component={screens.ChatScreen}
+          options={
+            ({ route }) => ({
+              title: route.params.userName
+            })}
         />
         {/* Login Screen */}
         <Stack.Screen
           name="Login"
           component={screens.Login}
-          options={{title: 'Login'}}
+          options={{ title: 'Login' }}
         />
         {/* Signup Screen */}
         <Stack.Screen
           name="Signup"
           component={screens.Signup}
-          options={{title: 'Create Account'}}
+          options={{ title: 'Create Account' }}
         />
         {/* OTP */}
         <Stack.Screen
           name="OTP"
           component={screens.OTP}
-          options={{title: 'Confirmation'}}
+          options={{ title: 'Confirmation' }}
         />
         {/* */}
       </Stack.Navigator>
