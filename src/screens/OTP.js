@@ -78,7 +78,7 @@ const OTPScreen = ({
         <View style={styles.InputFieldCont}>
           <Text style={styles.InputFieldLable}>Enter OTP :</Text>
           <Text
-            style={{...styles.loginCardDis, fontSize: 12, alignSelf: 'center'}}>
+            style={{fontSize: 12, alignSelf: 'center', marginVertical: 5,}}>
             we have sent an OPT to 
             {/* {mobileNumber} */}
           </Text>

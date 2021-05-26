@@ -1,0 +1,16 @@
+classpath 'com.google.gms:google-services:4.3.8'  // android/build.gradel dependencies{...}
+apply plugin: 'com.google.gms.google-services' // android/app/build.gradel 
+
+// android/app/build.gradel dependencies{...}
+// 
+    // Import the Firebase BoM
+    // Declare the dependency for the Firebase SDK for Google Analytics
+    // Declare the dependencies for any other desired Firebase products
+    // For example, declare the dependencies for Firebase Authentication and Cloud Firestore
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'androidx.multidex:multidex:2.0.1' 
+    implementation platform('com.google.firebase:firebase-bom:28.0.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+//

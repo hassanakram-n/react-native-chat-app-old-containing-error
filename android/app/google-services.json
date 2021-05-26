@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "1022790750298",
-    "project_id": "react-native-chat-app-7c243",
-    "storage_bucket": "react-native-chat-app-7c243.appspot.com"
+    "project_number": "1062518205384",
+    "project_id": "react-native-chat-a",
+    "storage_bucket": "react-native-chat-a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1022790750298:android:f73a03bafc51b02c8a8863",
+        "mobilesdk_app_id": "1:1062518205384:android:12e2f524594f42359e6efd",
         "android_client_info": {
           "package_name": "com.chatapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1022790750298-l3kd0qmiilooi16apv8lkf4s7vvi1m6e.apps.googleusercontent.com",
+          "client_id": "1062518205384-3fgnifd7v574cvlll2vk95a4ddenjafb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAywr1kByvSr9t3z9p3v9SZnnhPdTHG-ek"
+          "current_key": "AIzaSyCli3sigw_tIyq787EvynszaejbWqDQERg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1022790750298-l3kd0qmiilooi16apv8lkf4s7vvi1m6e.apps.googleusercontent.com",
+              "client_id": "1062518205384-3fgnifd7v574cvlll2vk95a4ddenjafb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

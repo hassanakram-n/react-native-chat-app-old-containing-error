@@ -32,26 +32,26 @@ const ChatScreen = () => {
         )
     }
     // 
-    const scrollToBottomComponent =(props)=>{
-        return(
+    const scrollToBottomComponent = () => {
+        return (
             <FontAwesome name='angle-double-down' size={22} color='#333' />
         )
     }
 
-    useEffect(() => {
-        setMessages([
-            {
-                _id: 1,
-                text: 'Hello developer',
-                createdAt: new Date(),
-                user: {
-                    _id: 2,
-                    name: 'React Native',
-                    avatar: 'https://lh3.googleusercontent.com/ogw/ADGmqu_GS-PcmIjqMwLVhFvNYuItV1IQWU2V9Bo-KQdK7w=s83-c-mo',
-                },
-            },
-        ])
-    }, [])
+    // useEffect(() => {
+    //     setMessages([
+    //         {
+    //             _id: 1,
+    //             text: 'Hello developer',
+    //             createdAt: new Date(),
+    //             user: {
+    //                 _id: 2,
+    //                 name: 'React Native',
+    //                 avatar: 'https://lh3.googleusercontent.com/ogw/ADGmqu_GS-PcmIjqMwLVhFvNYuItV1IQWU2V9Bo-KQdK7w=s83-c-mo',
+    //             },
+    //         },
+    //     ])
+    // }, [])
 
     const onSend = useCallback((messages = []) => {
         setMessages(previousMessages => GiftedChat.append(previousMessages, messages))
