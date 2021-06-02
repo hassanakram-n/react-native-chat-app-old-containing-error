@@ -17,7 +17,8 @@ import auth from '@react-native-firebase/auth';
 
 const SignupScreen = ({navigation}) => {
   const [name, setname] = useState(null);
-  const [mobileNumber, setmobileNumber] = useState(null);
+  // const [mobileNumber, setmobileNumber] = useState('+923304382019');
+  const [mobileNumber, setmobileNumber] = useState('+923047955183');
   const [password, setPassword] = useState(null);
   const [p1, setp1] = useState('');
   const [p2, setp2] = useState('');
@@ -52,15 +53,16 @@ const SignupScreen = ({navigation}) => {
   // // //////
 
   const signupHandler = () => {
+    navigation.navigate('OTP', {mobileNumber});
+    // navigation.navigate('OTP');
     // BottomShortToast('hello')
-    if (name && mobileNumber && mobileNumber >= 13 && password) {
-      setdisable(true);
-      navigation.replace('OTPScreen', {mobileNumber});
+    // if (name && mobileNumber && mobileNumber >= 13 && password) {
+    //   setdisable(true);
       
         
-    } else {
-      alert('Please complete all fields correctly.');
-    }
+    // } else {
+    //   alert('Please complete all fields correctly.');
+    // }
   };
   return (
     <>

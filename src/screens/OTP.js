@@ -9,59 +9,68 @@ import {
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import {Button} from 'react-native-paper';
-// import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
 import {connect} from 'react-redux';
 // importing functions from action file
 // import {setUserInfo01} from '../../redux/userDataActions';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const OTPScreen = ({
-//   route: {
-//     params: {mobileNumber, userId},
-//   },
+  route: {
+    params: {mobileNumber},
+  },
   navigation,
-//   user1,
+  //   user1,
 }) => {
-// const userMobileNumber = mobileNumber
-//   const [confirmation, setConfirmation] = useState('');
-//   const [code, setCode] = useState('');
-//   const [isLogedIn, setIsLogedIn] = useState(false);
+  const userMobileNumber = mobileNumber ;
+  const [confirmation, setConfirmation] = useState(null);
+  const [code, setCode] = useState(null);
+  //   const [isLogedIn, setIsLogedIn] = useState(false);
   const [loaderVisibility, setloaderVisibility] = useState(false);
-//   console.log('otpScreen mobile number #26___________', code)
-//   // console.log('conformation uid ===>>>', confirmation);
-//   // console.log('loged in status ', isLogedIn);
-//   // functions section
-//   useEffect(() => {
-//     signInWithPhoneNumber();
-//   }, []);
-//   // requesting otp
-//   const signInWithPhoneNumber = async () => {
-//     try {
-//       const confirmation = await auth().signInWithPhoneNumber(userMobileNumber);
-//       setConfirmation(confirmation);
-//     } catch (error) {
-//       navigation.replace('Login')
-//       console.log('conformation error ===>>>', error);
-//       // alert('error 1', error);
-//     }
-//   };
-//   // confirming otp from firebase
-//   const confirmCode = async () => {
-//     setloaderVisibility(true)
-//     try {
-//       console.log('response successful before ===>>>', code);
-//       await confirmation.confirm(code);
-//       console.log('response successful after===>>>', confirmation.confirm(code) );
-//       // setUserInfo01([userMobileNumber, userId]);
-//       navigation.replace('PersonalDetails', {userMobileNumber, userId});
-//     } catch (error) {
-//       console.log('response error  ===>>>', error);
-//       alert('Some Thing Went Wrong,');
-//       // setloaderVisibility(false)
-//     }
-//   };
+  //   console.log('otpScreen mobile number #26___________', code)
+  //   // console.log('conformation uid ===>>>', confirmation);
+  //   // console.log('loged in status ', isLogedIn);
 
-//   //
+    // functions section
+    useEffect(() => {
+      signInWithPhoneNumber();
+    }, []);
+
+    // requesting otp
+  const signInWithPhoneNumber = async () => {
+    try {
+      const confirmation = await auth().signInWithPhoneNumber(userMobileNumber);
+      setConfirmation(confirmation);
+      console.log('OTP44 conformation is sent successfully');
+      
+    } catch (error) {
+      // navigation.replace('Login');
+      console.log('OTP46 conformation error ===>>>', error);
+      // alert('error 1', error);
+    }
+  };
+  // confirming otp from firebase
+  const confirmCode = async () => {
+    setloaderVisibility(true);
+    try {
+      console.log('56 response successful before ===>>>', code);
+      await confirmation.confirm(code);
+      console.log(
+        '59 response successful after===>>>',
+        confirmation.confirm(code),
+      );
+      // setUserInfo01([userMobileNumber, userId]);
+      // navigation.replace('Home', {userMobileNumber});
+      alert('64 user sign in successful ');
+
+    } catch (error) {
+      // alert('Some Thing Went Wrong,');
+      console.log('68 response error  ===>>>', error);
+      setloaderVisibility(false)
+    }
+  };
+
+  // //   //
 
   // functions section end
   return (
@@ -77,10 +86,9 @@ const OTPScreen = ({
 
         <View style={styles.InputFieldCont}>
           <Text style={styles.InputFieldLable}>Enter OTP :</Text>
-          <Text
-            style={{fontSize: 12, alignSelf: 'center', marginVertical: 5,}}>
-            we have sent an OPT to 
-            {/* {mobileNumber} */}
+          <Text style={{fontSize: 12, alignSelf: 'center', marginVertical: 5}}>
+            we have sent an OPT to
+            {mobileNumber}
           </Text>
           <TextInput
             style={styles.textInput}
@@ -95,10 +103,8 @@ const OTPScreen = ({
           color="#eae2b7"
           mode="contained"
           loading={loaderVisibility}
-        //   onPress={() => confirmCode()}
-          onPress={() => navigation.navigate('Home')}
-
-          >
+          //   onPress={() => confirmCode()}
+          onPress={() => confirmCode()}>
           Next
         </Button>
 
