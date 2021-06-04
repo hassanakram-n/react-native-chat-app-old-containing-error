@@ -17,12 +17,12 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 const OTPScreen = ({
   route: {
-    params: {mobileNumber},
+    params: {userData},
   },
   navigation,
   //   user1,
 }) => {
-  const userMobileNumber = mobileNumber ;
+  const userMobileNumber = userData.mobileNumber ;
   const [confirmation, setConfirmation] = useState(null);
   const [code, setCode] = useState(null);
   //   const [isLogedIn, setIsLogedIn] = useState(false);
@@ -87,8 +87,8 @@ const OTPScreen = ({
         <View style={styles.InputFieldCont}>
           <Text style={styles.InputFieldLable}>Enter OTP :</Text>
           <Text style={{fontSize: 12, alignSelf: 'center', marginVertical: 5}}>
-            we have sent an OPT to
-            {mobileNumber}
+            we have sent an OPT to 
+            {userMobileNumber}
           </Text>
           <TextInput
             style={styles.textInput}

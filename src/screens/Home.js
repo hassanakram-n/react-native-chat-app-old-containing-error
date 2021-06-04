@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import auth from '@react-native-firebase/auth';
 import { StyleSheet, View, Text, Button, ScrollView, FlatList } from 'react-native';
 import ChatCard from '../components/ChatCard';
 import { realtimeData } from '../config/FirebaseRealtimeDatabase';
@@ -63,7 +64,7 @@ const Home = ({ navigation }) => {
     },
   ];
   // 
-
+console.log(auth().currentUser)
   return (
     <>
       <Container>

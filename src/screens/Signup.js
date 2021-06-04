@@ -52,110 +52,114 @@ const SignupScreen = ({navigation}) => {
   // }
   // // //////
 
-  const signupHandler = () => {
-    navigation.navigate('OTP', {mobileNumber});
+  const nextButtonPressHandler = () => {
+
+    console.log('signup56',auth().currentUser)
     // navigation.navigate('OTP');
+    // navigation.navigate('OTP', {userData});
     // BottomShortToast('hello')
-    // if (name && mobileNumber && mobileNumber >= 13 && password) {
+    // if (name && mobileNumber && password != null) {
     //   setdisable(true);
-      
-        
+
     // } else {
-    //   alert('Please complete all fields correctly.');
+    //   alert('Please complete all fields correctly.')
+    // // BottomShortToast('Please complete all fields correctly.')
     // }
   };
   return (
     <>
-      <Animatable.View
-        animation="fadeInUpBig"
-        style={styles.SignupScreenMainCont}>
-        <View style={styles.TitleCont}>
-          <Animatable.Image
-            animation="zoomIn"
-            source={require('../assets/logo.png')}
-            style={styles.logo}
-          />
-          <Text style={styles.text}>Chat App</Text>
-        </View>
-        <ScrollView contentContainerStyle={styles.container}>
-          {/* ---------------------- Student Section --------------------- */}
+      <View style={{backgroundColor: '#fff', flex: 1,}}>
+        <Animatable.View
+          animation="fadeInUpBig"
+          style={styles.SignupScreenMainCont}>
+          <View style={styles.TitleCont}>
+            <Animatable.Image
+              animation="zoomIn"
+              source={require('../assets/logo.png')}
+              style={styles.logo}
+            />
+            <Text style={styles.text}>Chat App</Text>
+          </View>
+          <ScrollView contentContainerStyle={styles.container}>
+            {/* ---------------------- Student Section --------------------- */}
 
-          {/* Name */}
-          <FormInput
-            disable={disable}
-            labelValue={name}
-            onChangeText={(e) => setname(e)}
-            placeholderText="Name"
-            iconType="user"
-            // keyboardType="number-pad"
-            autoCorrect={false}
-          />
-          {/* Mobile */}
-          <FormInput
-            disable={disable}
-            labelValue={mobileNumber}
-            onChangeText={(e) => setmobileNumber(e)}
-            placeholderText="Mobile Number"
-            iconType="mobile1"
-            keyboardType="number-pad"
-            autoCorrect={false}
-          />
-          {/* Password */}
-          <FormInput
-            inputColor={passwordInputColor}
-            disable={disable}
-            labelValue={p1}
-            onChangeText={(userPassword) => setp1(userPassword)}
-            placeholderText="Password"
-            iconType="lock"
-            secureTextEntry={true}
-            onBlur={() => confrimpasswordHandler()}
-          />
+            {/* Name */}
+            <FormInput
+              disable={disable}
+              labelValue={name}
+              onChangeText={(e) => setname(e)}
+              placeholderText="Name"
+              iconType="user"
+              // keyboardType="number-pad"
+              autoCorrect={false}
+            />
+            {/* Mobile */}
+            <FormInput
+              disable={disable}
+              labelValue={mobileNumber}
+              onChangeText={(e) => setmobileNumber(e)}
+              placeholderText="Mobile Number"
+              iconType="mobile1"
+              keyboardType="number-pad"
+              autoCorrect={false}
+            />
+            {/* Password */}
+            <FormInput
+              inputColor={passwordInputColor}
+              disable={disable}
+              labelValue={p1}
+              onChangeText={(userPassword) => setp1(userPassword)}
+              placeholderText="Password"
+              iconType="lock"
+              secureTextEntry={true}
+              onBlur={() => confrimpasswordHandler()}
+            />
 
-          {/* Confirm  Password */}
-          <FormInput
-            inputColor={passwordInputColor}
-            disable={disable}
-            labelValue={p2}
-            onChangeText={(userPassword) => setp2(userPassword)}
-            placeholderText="Confirm Password"
-            iconType="lock"
-            secureTextEntry={true}
-            onBlur={() => confrimpasswordHandler()}
-          />
-          {/* Sign up button */}
-          <FormButton
-            isLoading={disable}
-            iconType="edit"
-            buttonTitle="Sign Up"
-            onPress={() => signupHandler()}
-          />
+            {/* Confirm  Password */}
+            <FormInput
+              inputColor={passwordInputColor}
+              disable={disable}
+              labelValue={p2}
+              onChangeText={(userPassword) => setp2(userPassword)}
+              placeholderText="Confirm Password"
+              iconType="lock"
+              secureTextEntry={true}
+              onBlur={() => confrimpasswordHandler()}
+            />
+            {/* Sign up button */}
+            <FormButton
+              isLoading={disable}
+              iconType="edit"
+              buttonTitle="Next"
+              onPress={() => nextButtonPressHandler()}
+            />
 
-          <View style={styles.textPrivate}>
-            <Text style={styles.color_textPrivate}>
-              By registering, you confirm that you accept our
-            </Text>
+            <View style={styles.textPrivate}>
+              <Text style={styles.color_textPrivate}>
+                By registering, you confirm that you accept our
+              </Text>
+              <TouchableOpacity
+                disabled={disable}
+                onPress={() => alert('Terms Clicked!')}>
+                <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
+                  Terms of service
+                </Text>
+              </TouchableOpacity>
+              <Text style={styles.color_textPrivate}> and </Text>
+              <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
+                Privacy Policy
+              </Text>
+            </View>
+
             <TouchableOpacity
               disabled={disable}
-              onPress={() => alert('Terms Clicked!')}>
-              <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
-                Terms of service
-              </Text>
+              style={styles.navButton}
+              onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.navButtonText}>Have an account? Sign In</Text>
             </TouchableOpacity>
-            <Text style={styles.color_textPrivate}> and </Text>
-            <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
-              Privacy Policy
-            </Text>
-          </View>
-
-          <TouchableOpacity
-            disabled={disable}
-            style={styles.navButton}
-            onPress={() => navigation.navigate('OTP')}>
-            <Text style={styles.navButtonText}>Have an account? Sign In</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </Animatable.View>
+          </ScrollView>
+        </Animatable.View>
+      </View>
     </>
   );
 };

@@ -8,9 +8,9 @@ export const BottomLongToast = (msg) => {
     );
   };
 
-export const BottomShortToast = (msg) => {
+export const BottomShortToast = () => {
     ToastAndroid.showWithGravityAndOffset(
-      msg,
+      'Please complete all fields correctly.',
       ToastAndroid.SHORT,
       ToastAndroid.BOTTOM,
     );

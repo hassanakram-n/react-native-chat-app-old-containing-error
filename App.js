@@ -12,7 +12,7 @@ import {connect} from 'react-redux';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 //
-import StackNavigation from './src/navigations/Stack';
+import StackNavigation from './src/navigations/Navigation';
 import SignupScreen from './src/screens/Signup';
 //
 

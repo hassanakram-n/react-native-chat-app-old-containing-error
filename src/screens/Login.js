@@ -78,33 +78,34 @@ const LoginScreen = ({navigation, theme}) => {
   //   };
   return (
     <>
-      {/* <StatusBar backgroundColor="#0f0f0f" barStyle="Light-content" /> */}
-      <Animatable.View
-        animation="fadeInUpBig"
-        style={styles.SignupScreenMainCont}>
-        <View style={styles.TitleCont}>
-          <Animatable.Image
-            animation="zoomIn"
-            source={require('../assets/logo.png')}
-            style={styles.logo}
-          />
-          <Text style={styles.text}>Chat App</Text>
-        </View>
-        <ScrollView contentContainerStyle={styles.container}>
-          {/* ---------------------- Student Section --------------------- */}
+      <View style={{backgroundColor: '#fff', flex: 1}}>
+        {/* <StatusBar backgroundColor="#0f0f0f" barStyle="Light-content" /> */}
+        <Animatable.View
+          animation="fadeInUpBig"
+          style={styles.SignupScreenMainCont}>
+          <View style={styles.TitleCont}>
+            <Animatable.Image
+              animation="zoomIn"
+              source={require('../assets/logo.png')}
+              style={styles.logo}
+            />
+            <Text style={styles.text}>Chat App</Text>
+          </View>
+          <ScrollView contentContainerStyle={styles.container}>
+            {/* ---------------------- Student Section --------------------- */}
 
-          {/* Name */}
-          <FormInput
-            disable={disable}
-            labelValue={fullName}
-            onChangeText={(name) => setfullName(name)}
-            placeholderText="Mobile Number *"
-            iconType="mobile1"
-            keyboardType="number-pad"
-            autoCorrect={false}
-          />
-          {/* Email */}
-          {/* <FormInput
+            {/* Name */}
+            <FormInput
+              disable={disable}
+              labelValue={fullName}
+              onChangeText={(name) => setfullName(name)}
+              placeholderText="Mobile Number *"
+              iconType="mobile1"
+              keyboardType="number-pad"
+              autoCorrect={false}
+            />
+            {/* Email */}
+            {/* <FormInput
             disable={disable}
             labelValue={email}
             onChangeText={(userEmail) => setEmail(userEmail)}
@@ -114,8 +115,8 @@ const LoginScreen = ({navigation, theme}) => {
             autoCapitalize="none"
             autoCorrect={false}
           /> */}
-          {/* Student ID */}
-          {/* <FormInput
+            {/* Student ID */}
+            {/* <FormInput
         disable={disable}
         labelValue={id}
         onChangeText={(userid) => setid(userid)}
@@ -125,21 +126,21 @@ const LoginScreen = ({navigation, theme}) => {
         onBlur={() => setid(`${idPrefix}${id}`)}
       /> */}
 
-          {/* !!!-------------------Student Section ------------------!!! */}
+            {/* !!!-------------------Student Section ------------------!!! */}
 
-          {/* Password */}
-          <FormInput
-            inputColor={passwordInputColor}
-            disable={disable}
-            labelValue={p1}
-            onChangeText={(userPassword) => setp1(userPassword)}
-            placeholderText="Password"
-            iconType="lock"
-            secureTextEntry={true}
-          />
+            {/* Password */}
+            <FormInput
+              inputColor={passwordInputColor}
+              disable={disable}
+              labelValue={p1}
+              onChangeText={(userPassword) => setp1(userPassword)}
+              placeholderText="Password"
+              iconType="lock"
+              secureTextEntry={true}
+            />
 
-          {/* Confrim  Password */}
-          {/* <FormInput
+            {/* Confrim  Password */}
+            {/* <FormInput
             inputColor={passwordInputColor}
             disable={disable}
             labelValue={p2}
@@ -149,15 +150,15 @@ const LoginScreen = ({navigation, theme}) => {
             secureTextEntry={true}
             onBlur={() => confrimpasswordHandler()}
           /> */}
-          {/* Sign up button */}
-          <FormButton
-            isLoading={disable}
-            iconType="edit"
-            buttonTitle="Sign In"
-            // onPress={() => signupHandler()}
-          />
+            {/* Sign up button */}
+            <FormButton
+              isLoading={disable}
+              iconType="edit"
+              buttonTitle="Sign In"
+              // onPress={() => signupHandler()}
+            />
 
-          {/* <View style={styles.textPrivate}>
+            {/* <View style={styles.textPrivate}>
             <Text style={styles.color_textPrivate}>
               By registering, you confirm that you accept our
             </Text>
@@ -172,14 +173,15 @@ const LoginScreen = ({navigation, theme}) => {
             </Text>
           </View> */}
 
-          <TouchableOpacity
-            disable={disable}
-            style={styles.navButton}
-            onPress={() => navigation.navigate('Signup')}>
-            <Text style={styles.navButtonText}>Have an account? Sign In</Text>
-          </TouchableOpacity>
-        </ScrollView>
-      </Animatable.View>
+            <TouchableOpacity
+              disable={disable}
+              style={styles.navButton}
+              onPress={() => navigation.navigate('Signup')}>
+              <Text style={styles.navButtonText}>Have an account? Sign In</Text>
+            </TouchableOpacity>
+          </ScrollView>
+        </Animatable.View>
+      </View>
     </>
   );
 };
