@@ -10,6 +10,7 @@ import {
 import * as Animatable from 'react-native-animatable';
 import {Button} from 'react-native-paper';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 import {connect} from 'react-redux';
 // importing functions from action file
 // import {setUserInfo01} from '../../redux/userDataActions';
@@ -22,7 +23,7 @@ const OTPScreen = ({
   navigation,
   //   user1,
 }) => {
-  const userMobileNumber = userData.mobileNumber ;
+  const userMobileNumber = userData.mobile.mobileNumber;
   const [confirmation, setConfirmation] = useState(null);
   const [code, setCode] = useState(null);
   //   const [isLogedIn, setIsLogedIn] = useState(false);
@@ -31,18 +32,17 @@ const OTPScreen = ({
   //   // console.log('conformation uid ===>>>', confirmation);
   //   // console.log('loged in status ', isLogedIn);
 
-    // functions section
-    useEffect(() => {
-      signInWithPhoneNumber();
-    }, []);
+  // functions section
+  useEffect(() => {
+    signInWithPhoneNumber();
+  }, []);
 
-    // requesting otp
+  // requesting otp
   const signInWithPhoneNumber = async () => {
     try {
       const confirmation = await auth().signInWithPhoneNumber(userMobileNumber);
       setConfirmation(confirmation);
-      console.log('OTP44 conformation is sent successfully');
-      
+      // console.log('OTP44 conformation is sent successfully');
     } catch (error) {
       // navigation.replace('Login');
       console.log('OTP46 conformation error ===>>>', error);
@@ -52,22 +52,45 @@ const OTPScreen = ({
   // confirming otp from firebase
   const confirmCode = async () => {
     setloaderVisibility(true);
-    try {
-      console.log('56 response successful before ===>>>', code);
-      await confirmation.confirm(code);
-      console.log(
-        '59 response successful after===>>>',
-        confirmation.confirm(code),
-      );
-      // setUserInfo01([userMobileNumber, userId]);
-      // navigation.replace('Home', {userMobileNumber});
-      alert('64 user sign in successful ');
+    await confirmation.confirm(code)
+    .then((e)=>{
+      console.log('otp57 confirmation successful  ===>>>', e);
+      createAccount();
+    })
+    .catch((error)=>{
+          console.log('otp60 confirmation response error  ===>>>', error);
 
-    } catch (error) {
-      // alert('Some Thing Went Wrong,');
-      console.log('68 response error  ===>>>', error);
-      setloaderVisibility(false)
-    }
+    })
+    // try {
+    //   // console.log('56 response successful before ===>>>', code);
+    //   await confirmation.confirm(code);
+    //   // console.log(
+    //   //   '59 response successful after===>>>',
+    //   //   confirmation.confirm(code),
+    //   // );
+    //   // setUserInfo01([userMobileNumber, userId]);
+    //   // navigation.replace('Home', {userMobileNumber});
+    //   createAccount();
+    //   // alert('64 user sign in successful ');
+    // } catch (error) {
+    //   if (auth().currentUser) {
+    //     createAccount();
+    //     setloaderVisibility(false);
+    //   } else {
+    //     console.log('68 response error  ===>>>', error);
+    //   }
+    // }
+  };
+  const createAccount = async () => {
+    console.log('otp76, account not created', error);
+    firestore
+      .collection('user')
+      .doc(userData.mobile.number)
+      .set(userData)
+      .then(() => {
+        console.log('otp82, account created', s);
+      })
+      setloaderVisibility(false);
   };
 
   // //   //
@@ -87,7 +110,7 @@ const OTPScreen = ({
         <View style={styles.InputFieldCont}>
           <Text style={styles.InputFieldLable}>Enter OTP :</Text>
           <Text style={{fontSize: 12, alignSelf: 'center', marginVertical: 5}}>
-            we have sent an OPT to 
+            we have sent an OPT to
             {userMobileNumber}
           </Text>
           <TextInput

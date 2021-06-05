@@ -35,6 +35,14 @@ const AppStackNavigation = () => {
         })}
       />
       {/* -------------------------------------------------- */}
+      {/* Menu | just to get navigation prop in Menu */}
+      <AppStack.Screen
+        name="Menu"
+        component={screens.Menu}
+        // options={({route}) => ({
+        //   title: route.params.userName,
+        // })}
+      />
     </AppStack.Navigator>
   );
 };

@@ -11,7 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import auth from '@react-native-firebase/auth';
 //
 
-const MyMenu = () => {
+const MyMenu = ({navigation}) => {
   return (
     <>
       <Menu style={styles.MenuContainer}>

@@ -11,6 +11,7 @@ import {
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import * as Animatable from 'react-native-animatable';
+import PhoneInput from '../components/PhoneInput'
 import {BottomLongToast, BottomShortToast} from '../components/AndroidToast';
 //
 import auth from '@react-native-firebase/auth';
@@ -18,8 +19,8 @@ import auth from '@react-native-firebase/auth';
 
 const SignupScreen = ({navigation}) => {
   const [name, setname] = useState(null);
-  // const [mobileNumber, setmobileNumber] = useState('+923304382019');
-  const [mobileNumber, setmobileNumber] = useState('+923047955183');
+  // const [mobile, setmobileNumber] = useState('+923304382019');
+  const [mobile, setmobile] = useState({});
   const [password, setPassword] = useState(null);
   const [p1, setp1] = useState('');
   const [p2, setp2] = useState('');
@@ -39,7 +40,7 @@ const SignupScreen = ({navigation}) => {
   //
   const userData = {
     name: name,
-    mobileNumber: mobileNumber,
+    mobile: mobile,
     password: password,
   };
 
@@ -58,7 +59,7 @@ const SignupScreen = ({navigation}) => {
     // navigation.navigate('OTP');
     navigation.navigate('OTP', {userData});
     // BottomShortToast('hello')
-    // if (name && mobileNumber && password != null) {
+    // if (name && mobile && password != null) {
     //   setdisable(true);
 
     // } else {
@@ -94,15 +95,18 @@ const SignupScreen = ({navigation}) => {
                 autoCorrect={false}
               />
               {/* Mobile */}
-              <FormInput
+              {/* <FormInput
                 disable={disable}
-                labelValue={mobileNumber}
-                onChangeText={(e) => setmobileNumber(e)}
+                labelValue={mobile}
+                onChangeText={(e) => setmobile(e)}
                 placeholderText="Mobile Number"
                 iconType="mobile1"
                 keyboardType="number-pad"
                 autoCorrect={false}
-              />
+              /> */}
+              <PhoneInput
+              callBack={setmobile}
+               />
               {/* Password */}
               <FormInput
                 inputColor={passwordInputColor}
