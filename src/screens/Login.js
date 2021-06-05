@@ -12,6 +12,7 @@ import FormButton from '../components/FormButton';
 import * as Animatable from 'react-native-animatable';
 import firestore from '@react-native-firebase/firestore';
 import {BottomShortToast} from '../components/AndroidToast';
+import PhoneInput from '../components/PhoneInput'
 // import {firestoreDb} from '../config/firestore';
 //
 import {connect} from 'react-redux';
@@ -20,13 +21,13 @@ import {connect} from 'react-redux';
 const LoginScreen = ({navigation}) => {
   //
   const [disable, setdisable] = useState(false);
-  const [mobileNumber, setmobileNumber] = useState(null);
+  const [mobile, setmobile] = useState({});
   const [password, setpassword] = useState(null);
   //
-  const [userId, setuserId] = useState('3047955183');
+  const userId = mobile.number
   const [userData, setuserData] = useState(null);
   // const [userData, setuserData] = useState(null);
-
+  console.log('LOGIN30 ', userId)
   // // //////
   // const createAccount=()=>{
   //         // navigation.navigate('Drawer')
@@ -37,7 +38,7 @@ const LoginScreen = ({navigation}) => {
   // // //////
 
   //   const signupHandler = () => {
-  //     if (mobileNumber && email && password && id !== null) {
+  //     if (mobile && email && password && id !== null) {
   //       setdisable(true);
   //       //
   //       db.collection(radioCheck)
@@ -106,15 +107,18 @@ const LoginScreen = ({navigation}) => {
             </View>
             <ScrollView contentContainerStyle={styles.container}>
               {/* Mobile Number */}
-              <FormInput
+              {/* <FormInput
                 disable={disable}
-                labelValue={mobileNumber}
-                onChangeText={(name) => setmobileNumber(name)}
+                labelValue={mobile}
+                onChangeText={(name) => setmobile(name)}
                 placeholderText="Mobile Number *"
                 iconType="mobile1"
                 keyboardType="number-pad"
                 autoCorrect={false}
-              />
+              /> */}
+              <PhoneInput
+              callBack={setmobile}
+               />
               {/* Password */}
               <FormInput
                 disable={disable}

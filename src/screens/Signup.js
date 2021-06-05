@@ -82,7 +82,6 @@ const SignupScreen = ({navigation}) => {
               <Text style={styles.text}>Chat App</Text>
             </View>
             <ScrollView contentContainerStyle={styles.container}>
-              {/* ---------------------- Student Section --------------------- */}
 
               {/* Name */}
               <FormInput
@@ -141,7 +140,7 @@ const SignupScreen = ({navigation}) => {
                 </Text>
                 <TouchableOpacity
                   disabled={disable}
-                  onPress={() => alert('Terms Clicked!')}>
+                  onPress={() => BottomShortToast('Terms of service Clicked!')}>
                   <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
                     Terms of service
                   </Text>
