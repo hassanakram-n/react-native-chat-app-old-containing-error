@@ -4,54 +4,29 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image,
   ScrollView,
-  StatusBar,
 } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
-import RadioButton from '../components/RadioButton';
 import * as Animatable from 'react-native-animatable';
-//
-// import {db} from '../Config/firestore';
+import {firestoreDb} from '../config/firestore';
+import firestore from '@react-native-firebase/firestore';
 //
 import {connect} from 'react-redux';
 //
+// Login Screen Render Function
 const LoginScreen = ({navigation, theme}) => {
-  console.log('theme==>>', theme);
-
-  const [radioCheck, setradioCheck] = useState('student');
-  const [disable, setdisable] = useState(false);
-  const [fullName, setfullName] = useState();
-  const [email, setEmail] = useState();
-  const [id, setid] = useState('001');
-  const [password, setPassword] = useState();
-  const [p1, setp1] = useState('');
-  const [p2, setp2] = useState('');
-
-  const [passwordInputColor, setpasswordInputColor] = useState('#0f0f0f');
-  // password !== confirmPassword ? 'red' : '#0f0f0f';
-  const confrimpasswordHandler = () => {
-    if (p1 !== p2) {
-      setpasswordInputColor('red');
-    } else {
-      setPassword(p1);
-      setpasswordInputColor('#0f0f0f');
-    }
-  };
-
-  const idPrefix = radioCheck === 'student' ? 's' : 'c';
   //
-  const userData = {
-    name: fullName,
-    email: email,
-    id: id,
-    password: password,
-  };
+  const [disable, setdisable] = useState(false);
+  const [mobileNumber, setmobileNumber] = useState(null);
+  const [password, setpassword] = useState(null);
+  //
+  const [userId, setuserId] = useState('3047955183');
+  const [userData, setuserData] = useState(null)
+  // const [userData, setuserData] = useState(null);
 
   // // //////
   // const createAccount=()=>{
-
   //         // navigation.navigate('Drawer')
   //         // alert('Something went wrong',error)
   //         // console.log('create account Something went wrong')
@@ -60,7 +35,7 @@ const LoginScreen = ({navigation, theme}) => {
   // // //////
 
   //   const signupHandler = () => {
-  //     if (fullName && email && password && id !== null) {
+  //     if (mobileNumber && email && password && id !== null) {
   //       setdisable(true);
   //       //
   //       db.collection(radioCheck)
@@ -76,6 +51,41 @@ const LoginScreen = ({navigation, theme}) => {
   //       alert('Please complete all fields.');
   //     }
   //   };
+  const loginHandler = async () => {
+    if (userId && password) {
+    setdisable(true);
+    await firestore()
+      .collection('users')
+      .doc(userId)
+      .get()
+      .then((documentSnapshot) => {
+        console.log('login61 User exists: ', documentSnapshot.exists);
+        setdisable(false);
+        if (documentSnapshot.exists) {
+          setuserData(documentSnapshot.data())
+           navigation.replace('Home');
+          setdisable(false)
+          // console.log('login61 User data: ', documentSnapshot.data());
+        }
+      });
+    // firestore
+    //   .collection('users')
+    //   .doc(userId)
+    //   .get()
+    //   .then(data => {
+    //     console.log('login61, user firestore data', data);
+    //     setdisable(false);
+    //   })
+    //   .catch((error) => {
+    //     console.log('login66, user firestore data', error);
+    //     setdisable(false);
+    //   });
+    } else {
+      // show tost here
+      console.log('Login71, fill all fields correctly');
+    }
+  };
+
   return (
     <>
       <View style={{backgroundColor: '#fff', flex: 1}}>
@@ -92,92 +102,40 @@ const LoginScreen = ({navigation, theme}) => {
             <Text style={styles.text}>Chat App</Text>
           </View>
           <ScrollView contentContainerStyle={styles.container}>
-            {/* ---------------------- Student Section --------------------- */}
-
-            {/* Name */}
+            {/* Mobile Number */}
             <FormInput
               disable={disable}
-              labelValue={fullName}
-              onChangeText={(name) => setfullName(name)}
+              labelValue={mobileNumber}
+              onChangeText={(name) => setmobileNumber(name)}
               placeholderText="Mobile Number *"
               iconType="mobile1"
               keyboardType="number-pad"
               autoCorrect={false}
             />
-            {/* Email */}
-            {/* <FormInput
-            disable={disable}
-            labelValue={email}
-            onChangeText={(userEmail) => setEmail(userEmail)}
-            placeholderText="Email Adress *"
-            iconType="user"
-            keyboardType="email-address"
-            autoCapitalize="none"
-            autoCorrect={false}
-          /> */}
-            {/* Student ID */}
-            {/* <FormInput
-        disable={disable}
-        labelValue={id}
-        onChangeText={(userid) => setid(userid)}
-        placeholderText={`${radioCheck} id`}
-        iconType="idcard"
-        autoCorrect={false}
-        onBlur={() => setid(`${idPrefix}${id}`)}
-      /> */}
-
-            {/* !!!-------------------Student Section ------------------!!! */}
-
             {/* Password */}
             <FormInput
-              inputColor={passwordInputColor}
               disable={disable}
-              labelValue={p1}
-              onChangeText={(userPassword) => setp1(userPassword)}
+              labelValue={password}
+              onChangeText={(userPassword) => setpassword(userPassword)}
               placeholderText="Password"
               iconType="lock"
               secureTextEntry={true}
             />
-
-            {/* Confrim  Password */}
-            {/* <FormInput
-            inputColor={passwordInputColor}
-            disable={disable}
-            labelValue={p2}
-            onChangeText={(userPassword) => setp2(userPassword)}
-            placeholderText="Confirm Password"
-            iconType="lock"
-            secureTextEntry={true}
-            onBlur={() => confrimpasswordHandler()}
-          /> */}
-            {/* Sign up button */}
+            {/* Sign in button */}
             <FormButton
               isLoading={disable}
-              iconType="edit"
-              buttonTitle="Sign In"
-              // onPress={() => signupHandler()}
+              // iconType="edit"
+              buttonTitle="Login In"
+              onPress={() => loginHandler()}
             />
-
-            {/* <View style={styles.textPrivate}>
-            <Text style={styles.color_textPrivate}>
-              By registering, you confirm that you accept our
-            </Text>
-            <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
-              <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
-                Terms of service
-              </Text>
-            </TouchableOpacity>
-            <Text style={styles.color_textPrivate}> and </Text>
-            <Text style={[styles.color_textPrivate, {color: '#e88832'}]}>
-              Privacy Policy
-            </Text>
-          </View> */}
-
+            {/* create account */}
             <TouchableOpacity
               disable={disable}
               style={styles.navButton}
               onPress={() => navigation.navigate('Signup')}>
-              <Text style={styles.navButtonText}>Have an account? Sign In</Text>
+              <Text style={styles.navButtonText}>
+                Create an account? Sign Sign Up
+              </Text>
             </TouchableOpacity>
           </ScrollView>
         </Animatable.View>
@@ -185,11 +143,9 @@ const LoginScreen = ({navigation, theme}) => {
     </>
   );
 };
-const mapStateToProps = (state) => ({
-  theme: state.settings.theme,
-});
-export default connect(mapStateToProps, null)(LoginScreen);
-// export default LoginScreen;
+// const mapStateToProps = (state) => ({
+// });
+export default connect(null, null)(LoginScreen);
 
 const styles = StyleSheet.create({
   SignupScreenMainCont: {
@@ -204,24 +160,19 @@ const styles = StyleSheet.create({
   },
   container: {
     padding: 20,
-    // justifyContent: 'center',
-    // alignItems: 'center',
   },
   logo: {
     alignSelf: 'center',
     height: 110,
     width: 110,
     resizeMode: 'cover',
-    // paddingBottom: 10,
     marginBottom: 10,
   },
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 24,
-    // marginBottom: 10,
     color: '#0f0f0f',
     fontWeight: 'bold',
-    // alignSelf: 'flex-start',
   },
   navButton: {
     marginTop: 8,

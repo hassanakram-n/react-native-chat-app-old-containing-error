@@ -54,9 +54,9 @@ const SignupScreen = ({navigation}) => {
 
   const nextButtonPressHandler = () => {
 
-    console.log('signup56',auth().currentUser)
+    // console.log('signup56',auth().currentUser)
     // navigation.navigate('OTP');
-    // navigation.navigate('OTP', {userData});
+    navigation.navigate('OTP', {userData});
     // BottomShortToast('hello')
     // if (name && mobileNumber && password != null) {
     //   setdisable(true);

@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from 'react'
 import { Bubble, GiftedChat, Send } from 'react-native-gifted-chat'
-import { View } from 'react-native'
+import { View,Button } from 'react-native'
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
@@ -58,6 +58,7 @@ const ChatScreen = () => {
     }, [])
 
     return (
+        <>
         <GiftedChat
             messages={messages}
             onSend={messages => onSend(messages)}
@@ -70,7 +71,7 @@ const ChatScreen = () => {
             scrollToBottom
             scrollToBottomComponent={scrollToBottomComponent}
         />
-    )
+    </>)
 }
 
 export default ChatScreen
