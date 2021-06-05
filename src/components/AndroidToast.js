@@ -1,17 +1,9 @@
-import {ToastAndroid} from 'react-native'
+import {ToastAndroid} from 'react-native';
 
 export const BottomLongToast = (msg) => {
-    ToastAndroid.showWithGravityAndOffset(
-      msg,
-      ToastAndroid.LONG,
-      ToastAndroid.BOTTOM,
-    );
-  };
+  ToastAndroid.show(msg, ToastAndroid.LONG, ToastAndroid.BOTTOM);
+};
 
-export const BottomShortToast = () => {
-    ToastAndroid.showWithGravityAndOffset(
-      'Please complete all fields correctly.',
-      ToastAndroid.SHORT,
-      ToastAndroid.BOTTOM,
-    );
-  };
+export const BottomShortToast = (msg) => {
+  ToastAndroid.showWithGravity(msg, ToastAndroid.SHORT, ToastAndroid.BOTTOM);
+};

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {connect} from 'react-redux';
+import {MenuProvider} from 'react-native-popup-menu';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 //
@@ -20,10 +21,12 @@ const App = () => {
   return (
     <>
       <Provider store={store}>
-        <View style={styles.AppMainContainer}>
-          <StatusBar backgroundColor="#fff" barStyle="dark-content" />
-          <StackNavigation />
-        </View>
+        <MenuProvider>
+          <View style={styles.AppMainContainer}>
+            <StatusBar backgroundColor="#fff" barStyle="dark-content" />
+            <StackNavigation />
+          </View>
+        </MenuProvider>
       </Provider>
     </>
   );

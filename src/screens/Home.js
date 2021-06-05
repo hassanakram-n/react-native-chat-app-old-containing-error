@@ -15,7 +15,7 @@ import {
   MessageText,
   TextSection,
 } from '../styles/MessageScreen'
-
+import Menu from '../components/Menu'
 
 
 const Home = ({ navigation }) => {
@@ -67,12 +67,6 @@ const Home = ({ navigation }) => {
 console.log(auth().currentUser)
   return (
     <>
-        <Button onPress={()=> {
-          auth().signOut()
-          navigation.replace('AuthStack')
-        }} title='log out'/>
-        <Button onPress={()=> console.log('Home71, current user =>',auth().currentUser.phoneNumber)} title='Check user data in console'/>
-
       <Container>
         <FlatList
           data={Messages}
