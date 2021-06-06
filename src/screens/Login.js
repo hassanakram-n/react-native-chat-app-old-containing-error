@@ -12,7 +12,7 @@ import FormButton from '../components/FormButton';
 import * as Animatable from 'react-native-animatable';
 import firestore from '@react-native-firebase/firestore';
 import {BottomShortToast} from '../components/AndroidToast';
-import PhoneInput from '../components/PhoneInput'
+import PhoneInput from '../components/PhoneInput';
 // import {firestoreDb} from '../config/firestore';
 //
 import {connect} from 'react-redux';
@@ -24,10 +24,10 @@ const LoginScreen = ({navigation}) => {
   const [mobile, setmobile] = useState({});
   const [password, setpassword] = useState(null);
   //
-  const userId = mobile.number
+  const userId = mobile.number;
   const [userData, setuserData] = useState(null);
   // const [userData, setuserData] = useState(null);
-  console.log('LOGIN30 ', userId)
+  console.log('LOGIN30 ', userId);
   // // //////
   // const createAccount=()=>{
   //         // navigation.navigate('Drawer')
@@ -65,7 +65,7 @@ const LoginScreen = ({navigation}) => {
           // setdisable(false);
           if (documentSnapshot.exists) {
             setuserData(documentSnapshot.data());
-            
+
             console.log('login61 User exists: ', documentSnapshot.data());
             navigation.replace('AppStack');
             setdisable(false);
@@ -116,9 +116,7 @@ const LoginScreen = ({navigation}) => {
                 keyboardType="number-pad"
                 autoCorrect={false}
               /> */}
-              <PhoneInput
-              callBack={setmobile}
-               />
+              <PhoneInput callBack={setmobile} />
               {/* Password */}
               <FormInput
                 disable={disable}
@@ -140,9 +138,7 @@ const LoginScreen = ({navigation}) => {
                 disable={disable}
                 style={styles.navButton}
                 onPress={() => navigation.navigate('Signup')}>
-                <Text style={styles.navButtonText}>
-                  Create an account !
-                </Text>
+                <Text style={styles.navButtonText}>Create an account !</Text>
               </TouchableOpacity>
             </ScrollView>
           </KeyboardAvoidingView>

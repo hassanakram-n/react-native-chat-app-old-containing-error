@@ -22,7 +22,7 @@ const MyMenu = ({navigation}) => {
           <MenuOption
             onSelect={() => {
               auth().signOut();
-              navigation.replace('AuthStack');
+              // navigation.replace('AuthStack');
             }}
             text="Log out"
           />

@@ -11,7 +11,7 @@ import {
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import * as Animatable from 'react-native-animatable';
-import PhoneInput from '../components/PhoneInput'
+import PhoneInput from '../components/PhoneInput';
 import {BottomLongToast, BottomShortToast} from '../components/AndroidToast';
 //
 import auth from '@react-native-firebase/auth';
@@ -83,7 +83,6 @@ const SignupScreen = ({navigation}) => {
               <Text style={styles.text}>Chat App</Text>
             </View>
             <ScrollView contentContainerStyle={styles.container}>
-
               {/* Name */}
               <FormInput
                 disable={disable}
@@ -104,9 +103,7 @@ const SignupScreen = ({navigation}) => {
                 keyboardType="number-pad"
                 autoCorrect={false}
               /> */}
-              <PhoneInput
-              callBack={setmobile}
-               />
+              <PhoneInput callBack={setmobile} />
               {/* Password */}
               <FormInput
                 inputColor={passwordInputColor}
@@ -160,7 +157,7 @@ const SignupScreen = ({navigation}) => {
                 style={styles.navButton}
                 onPress={() => navigation.navigate('Login')}>
                 <Text style={styles.navButtonText}>
-                 Already Have an account !
+                  Already Have an account !
                 </Text>
               </TouchableOpacity>
             </ScrollView>
