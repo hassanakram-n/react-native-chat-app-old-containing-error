@@ -96,7 +96,8 @@ const OTPScreen = ({
     // // });
     // setloaderVisibility(false);
     
-    await firestore.collection('users')
+    await firestore()
+    .collection('users')
       .doc('3047955183')
       .set(userData)
       .then((snapshots) => {
