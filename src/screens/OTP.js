@@ -24,7 +24,7 @@ const OTPScreen = ({
   //   user1,
 }) => {
   const userMobileNumber = userData.mobile.mobileNumber;
-  const [confirmation, setConfirmation] = useState(null);
+  const [confirmation, setconfirmation] = useState(null);
   const [code, setCode] = useState(null);
   //   const [isLogedIn, setIsLogedIn] = useState(false);
   const [loaderVisibility, setloaderVisibility] = useState(false);
@@ -41,7 +41,7 @@ const OTPScreen = ({
   const signInWithPhoneNumber = async () => {
     try {
       const confirmation = await auth().signInWithPhoneNumber(userMobileNumber);
-      setConfirmation(confirmation);
+      setconfirmation(confirmation);
       console.log(
         'OTP44 conformation is sent successfully',
         confirmation.confirm(),
@@ -55,6 +55,13 @@ const OTPScreen = ({
   // confirming otp from firebase
   const confirmCode = async () => {
     setloaderVisibility(true);
+    try {
+      await confirmation.confirm(code);
+      createAccount()
+      setconfirmation(null);
+    } catch (error) {
+      alert('Invalid code', error);
+    }
     // await confirmation
     //   .confirm(code)
     //   .then((e) => {
@@ -64,10 +71,10 @@ const OTPScreen = ({
     //   .catch((error) => {
     //     console.log('otp60 confirmation response error  ===>>>', error);
     //   });
-    try {
+    // try {
       // console.log('56 response successful before ===>>>', code);
-      await confirmation.confirm(code);
-      createAccount();
+      // await confirmation.confirm(code);
+      // createAccount();
       // console.log(
       //   '59 response successful after===>>>',
       //   confirmation.confirm(code),
@@ -75,33 +82,22 @@ const OTPScreen = ({
       // setUserInfo01([userMobileNumber, userId]);
       // navigation.replace('Home', {userMobileNumber});
       // alert('64 user sign in successful ');
-    } catch (error) {
-      if (auth().currentUser) {
-        createAccount();
-        setloaderVisibility(false);
-      } else {
-        console.log('68 response error  ===>>>', error);
-      }
-    }
+    // } catch (error) {
+    //   if (auth().currentUser) {
+    //     createAccount();
+    //     setloaderVisibility(false);
+    //   } else {
+    //     console.log('68 response error  ===>>>', error);
+    //   }
+    // }
   };
   const createAccount = async () => {
-    // setloaderVisibility(true);
-    // // console.log('otp76, account not created');
-    // await firestore
-    //   .collection('users')
-    //   .doc(userData.mobile.number)
-    //   .set(userData, {merge: true});
-    // // .then(() => {
-    // //   console.log('otp82, account created', s);
-    // // });
-    // setloaderVisibility(false);
-    
     await firestore()
     .collection('users')
-      .doc('3047955183')
+      .doc(userData.mobile.number)
       .set(userData)
       .then((snapshots) => {
-        // navigation.navigate('LoginScreen');
+        navigation.navigate('AppStack');
         console.log('account created', snapshots)
       })
       .catch((error) => console.log('account not created',error));
@@ -148,7 +144,7 @@ const OTPScreen = ({
           mode="contained"
           loading={loaderVisibility}
           //   onPress={() => confirmCode()}
-          onPress={() => createAccount()}>
+          onPress={() => confirmCode()}>
           Next
         </Button>
 
