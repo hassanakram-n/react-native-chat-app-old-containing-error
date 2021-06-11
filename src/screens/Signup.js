@@ -13,6 +13,9 @@ import FormButton from '../components/FormButton';
 import * as Animatable from 'react-native-animatable';
 import PhoneInput from '../components/PhoneInput';
 import {BottomLongToast, BottomShortToast} from '../components/AndroidToast';
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import { launchImageLibrary} from 'react-native-image-picker';
 //
 import auth from '@react-native-firebase/auth';
 // import {db} from '../Config/firestore';
@@ -67,6 +70,7 @@ const SignupScreen = ({navigation}) => {
     // // BottomShortToast('Please complete all fields correctly.')
     // }
   };
+  const userUri = {uri: 'https://avatars.githubusercontent.com/u/72764487?v=4'}
   return (
     <>
       <View style={{backgroundColor: '#fff', flex: 1}}>
@@ -75,7 +79,16 @@ const SignupScreen = ({navigation}) => {
           style={styles.SignupScreenMainCont}>
           <KeyboardAvoidingView style={styles.SignupScreenMainCont}>
             <View style={styles.TitleCont}>
-            
+              <View style={styles.imgMainCont}>
+                <View style={styles.imgCont}>
+                  <Image source={userUri} style={styles.img} />
+                  {/* <Entypo name="user" size={40} color="#eae2b7" /> */}
+                </View>
+                <TouchableOpacity activeOpacity={.85} style={styles.selectImgCont} onPress={()=> console.log('camera is pressed')} 
+                >
+                  <AntDesign name="camerao" size={18} color="#fff" />
+                </TouchableOpacity>
+              </View>
               {/* <Animatable.Image
                 animation="zoomIn"
                 source={require('../assets/logo.png')}
@@ -188,9 +201,9 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
   },
   logo: {
-    alignSelf: 'center',
-    height: 110,
-    width: 110,
+    // alignSelf: 'center',
+    height: 80,
+    width:  80,
     resizeMode: 'cover',
     // paddingBottom: 10,
     marginBottom: 10,
@@ -231,4 +244,48 @@ const styles = StyleSheet.create({
     width: '100%',
     marginVertical: 5,
   },
+  imgMainCont: {
+    position: 'relative',
+    // backgroundColor: 'red',
+    // padding:8,
+    width: 80,
+    height: 80,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  imgCont: {
+    // backgroundColor: 'red',
+    padding: 8,
+    width: 80,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    // borderWidth: 1,
+    // borderRadius: 50,
+    // borderColor: '#ccc'
+  },
+  img: {
+    // backgroundColor: 'red',
+    width: 80,
+    height: 80,
+    resizeMode: 'cover',
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // borderWidth: 1,
+    borderRadius: 50,
+    // borderColor: '#ccc'
+  },
+  selectImgCont:{
+    position: 'absolute',
+    bottom: 0,
+    right: -2,
+    backgroundColor: '#f8c301',
+    padding: 6,
+    borderRadius: 50,
+
+    
+  }
 });
