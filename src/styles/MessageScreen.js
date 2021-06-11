@@ -46,9 +46,10 @@ export const UserInfoText = styled.View`
 `;
 
 export const UserName = styled.Text`
-  font-size: 14px;
+  font-size: 16px;
   font-weight: bold;
   font-family: 'Lato-Regular';
+  text-transform: capitalize;
 `;
 
 export const PostTime = styled.Text`

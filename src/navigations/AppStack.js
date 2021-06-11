@@ -29,11 +29,13 @@ const AppStackNavigation = () => {
       {/* ChatScreen */}
       <AppStack.Screen
         name="ChatScreen"
-        component={screens.ChatScreen}
+        // component={screens.ChatScreen}
         options={({route}) => ({
           title: route.params.userName,
         })}
-      />
+      >
+        {props => <screens.ChatScreen {...props} user={auth().currentUser} />}
+      </AppStack.Screen>
       {/* -------------------------------------------------- */}
       {/* Menu | just to get navigation prop in Menu */}
       <AppStack.Screen

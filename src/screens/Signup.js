@@ -75,12 +75,13 @@ const SignupScreen = ({navigation}) => {
           style={styles.SignupScreenMainCont}>
           <KeyboardAvoidingView style={styles.SignupScreenMainCont}>
             <View style={styles.TitleCont}>
-              <Animatable.Image
+            
+              {/* <Animatable.Image
                 animation="zoomIn"
                 source={require('../assets/logo.png')}
                 style={styles.logo}
               />
-              <Text style={styles.text}>Chat App</Text>
+              <Text style={styles.text}>Chat App</Text> */}
             </View>
             <ScrollView contentContainerStyle={styles.container}>
               {/* Name */}

@@ -6,6 +6,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 const ChatScreen = () => {
     const [messages, setMessages] = useState([]);
+    console.log('messages',messages)
     // 
     const renderBubble = (props) => {
         return <Bubble {...props}

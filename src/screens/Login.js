@@ -27,7 +27,7 @@ const LoginScreen = ({navigation}) => {
   const userId = mobile.number;
   const [userData, setuserData] = useState(null);
   // const [userData, setuserData] = useState(null);
-  console.log('LOGIN30 ', userId);
+  // console.log('LOGIN30 ', userId);
   // // //////
   // const createAccount=()=>{
   //         // navigation.navigate('Drawer')
@@ -137,7 +137,9 @@ const LoginScreen = ({navigation}) => {
               <TouchableOpacity
                 disable={disable}
                 style={styles.navButton}
-                onPress={() => navigation.navigate('Signup')}>
+                onPress={() => {
+                  navigation.navigate('Signup');
+                }}>
                 <Text style={styles.navButtonText}>Create an account !</Text>
               </TouchableOpacity>
             </ScrollView>
